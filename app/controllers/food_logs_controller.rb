@@ -46,6 +46,6 @@ class FoodLogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def food_log_params
-      params.require(:food_log).permit(:datetime, :description, :calories)
+      params.require(:food_log).permit(:date, :time, :description, :calories)
     end
 end

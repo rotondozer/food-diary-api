@@ -1,3 +1,3 @@
 class FoodLogSerializer < ActiveModel::Serializer
-  attributes :id, :date_time, :description, :calories
+  attributes :id, :date, :time, :description, :calories
 end
