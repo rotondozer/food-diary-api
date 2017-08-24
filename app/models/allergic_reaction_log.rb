@@ -1,0 +1,2 @@
+class AllergicReactionLog < ApplicationRecord
+end

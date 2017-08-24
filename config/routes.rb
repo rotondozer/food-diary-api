@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  resources :allergic_reaction_logs
   resources :food_logs
   resources :examples, except: [:new, :edit]
   post '/sign-up' => 'users#signup'
