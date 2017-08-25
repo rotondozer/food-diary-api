@@ -1,3 +1,3 @@
 class FoodLog < ApplicationRecord
-  belongs_to :date_masters
+  belongs_to :date_master
 end
