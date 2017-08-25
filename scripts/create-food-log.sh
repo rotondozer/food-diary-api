@@ -9,11 +9,10 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
     "food_log": {
+      "time": "'"${TIME}"'",
       "description": "'"${DESCRIPTION}"'",
       "calories": "'"${CALORIES}"'",
-      "date": "'"${DATE}"'",
-      "time": "'"${TIME}"'",
-      "date_master": "'"${DATE_MASTER}"'"
+      "date_master_id": "'"${DATEMASTER}"'"
     }
   }'
 
