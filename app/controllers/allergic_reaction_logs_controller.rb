@@ -1,4 +1,4 @@
-class AllergicReactionLogsController < ApplicationController
+class AllergicReactionLogsController < ProtectedController
   before_action :set_allergic_reaction_log, only: [:show, :update, :destroy]
 
   # GET /allergic_reaction_logs
@@ -46,6 +46,6 @@ class AllergicReactionLogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def allergic_reaction_log_params
-      params.require(:allergic_reaction_log).permit(:time, :symptom)
+      params.require(:allergic_reaction_log).permit(:time, :symptom, :date_master_id)
     end
 end

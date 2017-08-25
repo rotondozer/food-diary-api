@@ -10,9 +10,8 @@ curl "${API}${URL_PATH}" \
   --data '{
     "allergic_reaction_log": {
       "symptom": "'"${SYMPTOM}"'",
-      "date": "'"${DATE}"'",
       "time": "'"${TIME}"'",
-      "date_master": "'"${DATE_MASTER}"'"
+      "date_master_id": "'"${DATEMASTER}"'"
     }
   }'
 
