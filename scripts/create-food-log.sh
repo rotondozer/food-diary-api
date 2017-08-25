@@ -12,7 +12,8 @@ curl "${API}${URL_PATH}" \
       "description": "'"${DESCRIPTION}"'",
       "calories": "'"${CALORIES}"'",
       "date": "'"${DATE}"'",
-      "time": "'"${TIME}"'"
+      "time": "'"${TIME}"'",
+      "date_master": "'"${DATE_MASTER}"'"
     }
   }'
 

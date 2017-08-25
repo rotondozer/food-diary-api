@@ -46,6 +46,6 @@ class AllergicReactionLogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def allergic_reaction_log_params
-      params.require(:allergic_reaction_log).permit(:date, :time, :symptom)
+      params.require(:allergic_reaction_log).permit(:time, :symptom)
     end
 end

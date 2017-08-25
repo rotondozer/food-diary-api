@@ -11,7 +11,8 @@ curl "${API}${URL_PATH}" \
     "allergic_reaction_log": {
       "symptom": "'"${SYMPTOM}"'",
       "date": "'"${DATE}"'",
-      "time": "'"${TIME}"'"
+      "time": "'"${TIME}"'",
+      "date_master": "'"${DATE_MASTER}"'"
     }
   }'
 

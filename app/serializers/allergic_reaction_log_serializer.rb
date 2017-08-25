@@ -1,4 +1,4 @@
 class AllergicReactionLogSerializer < ActiveModel::Serializer
-  attributes :id, :date, :time, :symptom
+  attributes :id, :time, :symptom
   has_one :date_master
 end

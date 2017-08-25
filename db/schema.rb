@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825000106) do
+ActiveRecord::Schema.define(version: 20170825153821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "allergic_reaction_logs", force: :cascade do |t|
-    t.date     "date"
     t.text     "time"
     t.text     "symptom"
     t.datetime "created_at",     null: false
@@ -44,7 +43,6 @@ ActiveRecord::Schema.define(version: 20170825000106) do
     t.integer  "calories"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.date     "date"
     t.text     "time"
     t.integer  "date_master_id"
     t.index ["date_master_id"], name: "index_food_logs_on_date_master_id", using: :btree
