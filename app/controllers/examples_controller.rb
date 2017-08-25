@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class ExamplesController < OpenReadController
+  # Inheriting from OpenReadController means stuff below does NOT require authenticated request
   before_action :set_example, only: [:update, :destroy]
 
   # GET /examples

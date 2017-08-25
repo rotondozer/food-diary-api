@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823232615) do
+ActiveRecord::Schema.define(version: 20170825000106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20170823232615) do
     t.date     "date"
     t.text     "time"
     t.text     "symptom"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "date_master_id"
+    t.index ["date_master_id"], name: "index_allergic_reaction_logs_on_date_master_id", using: :btree
+  end
+
+  create_table "date_masters", force: :cascade do |t|
+    t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,10 +42,12 @@ ActiveRecord::Schema.define(version: 20170823232615) do
   create_table "food_logs", force: :cascade do |t|
     t.text     "description"
     t.integer  "calories"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.date     "date"
     t.text     "time"
+    t.integer  "date_master_id"
+    t.index ["date_master_id"], name: "index_food_logs_on_date_master_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,5 +60,7 @@ ActiveRecord::Schema.define(version: 20170823232615) do
     t.index ["token"], name: "index_users_on_token", unique: true, using: :btree
   end
 
+  add_foreign_key "allergic_reaction_logs", "date_masters"
   add_foreign_key "examples", "users"
+  add_foreign_key "food_logs", "date_masters"
 end
