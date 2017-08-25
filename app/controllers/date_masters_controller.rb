@@ -46,6 +46,6 @@ class DateMastersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def date_master_params
-      params.require(:date_master).permit(:date)
+      params.require(:date_master).permit(:date, :user_id)
     end
 end

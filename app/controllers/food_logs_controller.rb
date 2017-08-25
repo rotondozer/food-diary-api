@@ -1,6 +1,6 @@
 # TODO probably change what this controller is inheriting from for authentication
 # Inheriting from ApplicationController makes it completely open
-class FoodLogsController < ApplicationController
+class FoodLogsController < ProtectedController
   before_action :set_food_log, only: [:show, :update, :destroy]
 
   # GET /food_logs
