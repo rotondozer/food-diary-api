@@ -43,7 +43,9 @@ class FoodLogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food_log
-      @food_log = FoodLog.find(params[:id])
+      @user = User.find(params[:id])
+      @food_log = @user.food_logs
+      # binding.pry
     end
 
     # Only allow a trusted parameter "white list" through.

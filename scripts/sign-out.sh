@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API="${API_ORIGIN:-https://food-diary-api.herokuapp.com}"
+API="${API_ORIGIN:-http://localhost:4741}"
 URL_PATH="/sign-out"
 curl "${API}${URL_PATH}/${ID}" \
   --include \
