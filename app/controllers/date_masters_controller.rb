@@ -1,4 +1,4 @@
-class DateMastersController < ProtectedController
+class DateMastersController < ApplicationController
   before_action :set_date_master, only: [:show, :update, :destroy]
 
   # GET /date_masters
@@ -41,7 +41,8 @@ class DateMastersController < ProtectedController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_date_master
-      @date_master = DateMaster.find(params[:id])
+      @user = User.find(params[:id])
+      @date_master = @user.date_masters
     end
 
     # Only allow a trusted parameter "white list" through.
