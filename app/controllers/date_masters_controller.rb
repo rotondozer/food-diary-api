@@ -1,10 +1,11 @@
 class DateMastersController < ApplicationController
-  before_action :set_date_master, only: [:index, :show, :update, :destroy]
+  before_action :set_date_master, only: [:show, :update, :destroy]
 
   # GET /date_masters
   def index
-    @date_masters = DateMaster.all
 
+    @date_masters = DateMaster.where(:user_id => params[:user_id])
+    # binding.pry
     render json: @date_masters
   end
 
@@ -41,9 +42,9 @@ class DateMastersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_date_master
-      @user = User.find(params[:id])
-      @date_master = @user.date_masters
-      # @date_master = DateMaster.find(params[:user_id])
+      # @user = User.find(params[:id])
+      # @date_master = @user.date_masters
+      @date_master = DateMaster.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
