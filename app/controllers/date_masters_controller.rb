@@ -1,5 +1,5 @@
 class DateMastersController < ApplicationController
-  before_action :set_date_master, only: [:show, :update, :destroy]
+  before_action :set_date_master, only: [:index, :show, :update, :destroy]
 
   # GET /date_masters
   def index
@@ -43,6 +43,7 @@ class DateMastersController < ApplicationController
     def set_date_master
       @user = User.find(params[:id])
       @date_master = @user.date_masters
+      # @date_master = DateMaster.find(params[:user_id])
     end
 
     # Only allow a trusted parameter "white list" through.

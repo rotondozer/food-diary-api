@@ -1,9 +1,10 @@
 class FoodLogsController < ApplicationController
   # TODO change < ProtectedController
-  before_action :set_food_log, only: [:show, :update, :destroy]
+  before_action :set_food_log, only: [:index, :show, :update, :destroy]
 
   # GET /food_logs
   def index
+    # @food_log = FoodLog.find(params[:date_master_id])
     @food_logs = FoodLog.all
 
     render json: @food_logs
@@ -12,7 +13,7 @@ class FoodLogsController < ApplicationController
   # TODO write custom controller#method for getting Logs by Date
   def logs_by_date
     # what are parameters here?
-    binding.pry
+    # binding.pry
     # match 'yyyy-mm-dd' from
     # @date = DateMasters.find_by(date: 'yyyy-mm-dd')
     # find all food logs that share the same date_masters_id
@@ -52,7 +53,9 @@ class FoodLogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food_log
+      # @food_log = FoodLog.find(params[:id])
       @user = User.find(params[:id])
+      # # # binding.pry
       @food_log = @user.food_logs
       # binding.pry
     end
