@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :date_masters
   resources :food_logs
-  # resources :date_masters do
-  #   resources :food_logs
-  # end
+  resources :date_masters do
+    resources :food_logs
+  end
 
   resources :allergic_reaction_logs
 
