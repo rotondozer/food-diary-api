@@ -15,7 +15,11 @@ class DateMastersController < ApplicationController
 
   # GET /date_masters/1
   def show
+    # binding.pry
+    @user = User.find(params[:id])
+    @date_master = @user.date_masters
     render json: @date_master
+    # binding.pry
   end
 
   # POST /date_masters

@@ -5,7 +5,7 @@ class FoodLogsController < ApplicationController
   # GET /food_logs
   def index
     # @food_log = FoodLog.find(params[:date_master_id])
-    # binding.pry
+    binding.pry
     @food_logs = FoodLog.where(:date_master_id => params[:date_master_id])
 
     render json: @food_logs
@@ -23,7 +23,11 @@ class FoodLogsController < ApplicationController
 
   # GET /food_logs/1
   def show
+    # binding.pry
+    @user = User.find(params[:id])
+    @food_log = @user.food_logs
     render json: @food_log
+    # binding.pry
   end
 
   # POST /food_logs
