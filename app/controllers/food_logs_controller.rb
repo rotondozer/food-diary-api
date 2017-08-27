@@ -1,6 +1,5 @@
-# TODO probably change what this controller is inheriting from for authentication
-# Inheriting from ApplicationController makes it completely open
 class FoodLogsController < ApplicationController
+  # TODO change < ProtectedController
   before_action :set_food_log, only: [:show, :update, :destroy]
 
   # GET /food_logs
@@ -8,6 +7,16 @@ class FoodLogsController < ApplicationController
     @food_logs = FoodLog.all
 
     render json: @food_logs
+  end
+
+  # TODO write custom controller#method for getting Logs by Date
+  def logs_by_date
+    # what are parameters here?
+    binding.pry
+    # match 'yyyy-mm-dd' from
+    # @date = DateMasters.find_by(date: 'yyyy-mm-dd')
+    # find all food logs that share the same date_masters_id
+    # render json: # user
   end
 
   # GET /food_logs/1
