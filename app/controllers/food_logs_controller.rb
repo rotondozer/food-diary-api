@@ -5,9 +5,11 @@ class FoodLogsController < ApplicationController
   # GET /food_logs
   def index
     # @food_log = FoodLog.find(params[:date_master_id])
-    binding.pry
-    @food_logs = FoodLog.where(:date_master_id => params[:date_master_id])
-
+    # binding.pry
+    @date_master_id = DateMaster.find_by(:date => params[:date_master_id]).id
+    # binding.pry
+    @food_logs = FoodLog.where(:date_master_id => @date_master_id)
+    # binding.pry
     render json: @food_logs
   end
 
@@ -67,6 +69,6 @@ class FoodLogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def food_log_params
-      params.require(:food_log).permit(:time, :description, :calories, :date_master_id)
+      params.require(:food_log).permit(:time, :description, :calories, :date_master_id, :date)
     end
 end
