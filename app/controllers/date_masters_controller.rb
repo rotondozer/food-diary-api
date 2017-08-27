@@ -1,4 +1,4 @@
-class DateMastersController < ApplicationController
+class DateMastersController < ProtectedController
   before_action :set_date_master, only: [:show, :update, :destroy]
 
   # GET /date_masters

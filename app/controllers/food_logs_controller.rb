@@ -1,15 +1,16 @@
-class FoodLogsController < ApplicationController
+class FoodLogsController < ProtectedController
   # TODO change < ProtectedController
   before_action :set_food_log, only: [:show, :update, :destroy]
 
   # GET /food_logs
   def index
+    # TODO add conditional for @user = User.find_by
     # @food_log = FoodLog.find(params[:date_master_id])
     # binding.pry
-    @date_master_id = DateMaster.find_by(:date => params[:date_master_id]).id
+    @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
     # binding.pry
     @food_logs = FoodLog.where(:date_master_id => @date_master_id)
-    # binding.pry
+    binding.pry
     render json: @food_logs
   end
 
