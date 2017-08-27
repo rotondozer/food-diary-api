@@ -1,11 +1,12 @@
 class FoodLogsController < ApplicationController
   # TODO change < ProtectedController
-  before_action :set_food_log, only: [:index, :show, :update, :destroy]
+  before_action :set_food_log, only: [:show, :update, :destroy]
 
   # GET /food_logs
   def index
     # @food_log = FoodLog.find(params[:date_master_id])
-    @food_logs = FoodLog.all
+    # binding.pry
+    @food_logs = FoodLog.where(:date_master_id => params[:date_master_id])
 
     render json: @food_logs
   end
@@ -53,10 +54,10 @@ class FoodLogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_food_log
-      # @food_log = FoodLog.find(params[:id])
-      @user = User.find(params[:id])
-      # # # binding.pry
-      @food_log = @user.food_logs
+      @food_log = FoodLog.find(params[:id])
+      # @user = User.find(params[:id])
+      # # # # binding.pry
+      # @food_log = @user.food_logs
       # binding.pry
     end
 

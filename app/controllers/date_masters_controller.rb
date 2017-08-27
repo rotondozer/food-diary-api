@@ -3,7 +3,11 @@ class DateMastersController < ApplicationController
 
   # GET /date_masters
   def index
-
+    # binding.pry
+    # write conditional to get all dates associated with user if *some param* empty
+    # proceed with the code written if not
+    # wait, i don' think i have to do that
+    # if
     @date_masters = DateMaster.where(:user_id => params[:user_id])
     # binding.pry
     render json: @date_masters
@@ -42,6 +46,7 @@ class DateMastersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_date_master
+      # binding.pry
       # @user = User.find(params[:id])
       # @date_master = @user.date_masters
       @date_master = DateMaster.find(params[:id])
