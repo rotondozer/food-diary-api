@@ -24,11 +24,12 @@ class DateMastersController < ProtectedController
 
   # POST /date_masters
   def create
+    # TODO add conditional to prevent creating date that already exists for that user
     # binding.pry
     @user_id = params[:user_id]
     @date = params[:date_master][:date]
     # binding.pry
-    @date_master = DateMaster.new(date: @date, :user_id => @user_id)
+    @date_master = DateMaster.new(:date => @date, :user_id => @user_id)
     binding.pry
     if @date_master.save
       render json: @date_master, status: :created, location: @date_master
