@@ -42,17 +42,15 @@ class DateMastersController < ProtectedController
 
   # PATCH/PUT /date_masters/1
   def update
-    binding.pry
+    # binding.pry
     @old_date = params[:date_master][:id]
     @new_date = date_master_params[:date]
     @date_master_id = DateMaster.find_by(:date => @old_date, :user_id => params[:user_id]).id
 
-    binding.pry
+    # binding.pry
     if DateMaster.update(@date_master_id, :date => @new_date)
-      binding.pry
       render json: @date_master
     else
-      binding.pry
       render json: @date_master.errors, status: :unprocessable_entity
     end
   end
