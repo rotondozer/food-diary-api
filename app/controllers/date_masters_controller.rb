@@ -1,5 +1,6 @@
 class DateMastersController < ProtectedController
-  before_action :set_date_master, only: [:show, :update, :destroy]
+  # binding.pry
+  before_action :set_date_master, only: [:show, :destroy]
 
   # GET /date_masters
   def index
@@ -24,13 +25,14 @@ class DateMastersController < ProtectedController
 
   # POST /date_masters
   def create
+    binding.pry
     # TODO add conditional to prevent creating date that already exists for that user
     # binding.pry
     @user_id = params[:user_id]
     @date = params[:date_master][:date]
     # binding.pry
     @date_master = DateMaster.new(:date => @date, :user_id => @user_id)
-    binding.pry
+    # binding.pry
     if @date_master.save
       render json: @date_master, status: :created, location: @date_master
     else
@@ -40,9 +42,17 @@ class DateMastersController < ProtectedController
 
   # PATCH/PUT /date_masters/1
   def update
-    if @date_master.update(date_master_params)
+    binding.pry
+    @old_date = params[:date_master][:id]
+    @new_date = date_master_params[:date]
+    @date_master_id = DateMaster.find_by(:date => @old_date, :user_id => params[:user_id]).id
+
+    binding.pry
+    if DateMaster.update(@date_master_id, :date => @new_date)
+      binding.pry
       render json: @date_master
     else
+      binding.pry
       render json: @date_master.errors, status: :unprocessable_entity
     end
   end
@@ -59,10 +69,11 @@ class DateMastersController < ProtectedController
       # @user = User.find(params[:id])
       # @date_master = @user.date_masters
       @date_master = DateMaster.find(params[:id])
+      # @old_date = date_master_params[:date_old]
     end
 
     # Only allow a trusted parameter "white list" through.
     def date_master_params
-      params.require(:date_master).permit(:date, :user_id)
+      params.require(:date_master).permit(:date, :user_id, :date_old, :date_new)
     end
 end
