@@ -24,8 +24,12 @@ class DateMastersController < ProtectedController
 
   # POST /date_masters
   def create
-    @date_master = DateMaster.new(date_master_params)
-
+    # binding.pry
+    @user_id = params[:user_id]
+    @date = params[:date_master][:date]
+    # binding.pry
+    @date_master = DateMaster.new(date: @date, :user_id => @user_id)
+    binding.pry
     if @date_master.save
       render json: @date_master, status: :created, location: @date_master
     else

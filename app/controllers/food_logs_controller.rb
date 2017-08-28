@@ -10,7 +10,7 @@ class FoodLogsController < ProtectedController
     @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
     # binding.pry
     @food_logs = FoodLog.where(:date_master_id => @date_master_id)
-    binding.pry
+    # binding.pry
     render json: @food_logs
   end
 
@@ -35,8 +35,12 @@ class FoodLogsController < ProtectedController
 
   # POST /food_logs
   def create
+    binding.pry
+    # food_log_params[:date_master_id]
+    @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id])
+    # food_log_params[:date_master_id => @date_master_id] <= this doesn't work
     @food_log = FoodLog.new(food_log_params)
-
+    binding.pry
     if @food_log.save
       render json: @food_log, status: :created, location: @food_log
     else
