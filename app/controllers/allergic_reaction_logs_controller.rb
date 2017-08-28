@@ -3,8 +3,10 @@ class AllergicReactionLogsController < ProtectedController
 
   # GET /allergic_reaction_logs
   def index
-    @allergic_reaction_logs = AllergicReactionLog.all
-
+    @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
+    # binding.pry
+    @allergic_reaction_logs = AllergicReactionLog.where(:date_master_id => @date_master_id)
+    # binding.pry
     render json: @allergic_reaction_logs
   end
 

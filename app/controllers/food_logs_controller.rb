@@ -4,26 +4,12 @@ class FoodLogsController < ProtectedController
 
   # GET /food_logs
   def index
-    # TODO add conditional for @user = User.find_by
-    # @food_log = FoodLog.find(params[:date_master_id])
-    # binding.pry
     @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
     # binding.pry
     @food_logs = FoodLog.where(:date_master_id => @date_master_id)
     # binding.pry
     render json: @food_logs
   end
-
-  # TODO write custom controller#method for getting Logs by Date
-  def logs_by_date
-    # what are parameters here?
-    # binding.pry
-    # match 'yyyy-mm-dd' from
-    # @date = DateMasters.find_by(date: 'yyyy-mm-dd')
-    # find all food logs that share the same date_masters_id
-    # render json: # user
-  end
-
   # GET /food_logs/1
   def show
     # binding.pry
@@ -35,7 +21,6 @@ class FoodLogsController < ProtectedController
 
   # POST /food_logs
   def create
-    # food_log_params[:date_master_id]
     @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
     binding.pry
     @description = food_log_params[:description]
