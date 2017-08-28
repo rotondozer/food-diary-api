@@ -4,9 +4,9 @@ class AllergicReactionLogsController < ProtectedController
   # GET /allergic_reaction_logs
   def index
     @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
-    # binding.pry
+    #
     @allergic_reaction_logs = AllergicReactionLog.where(:date_master_id => @date_master_id)
-    # binding.pry
+    #
     render json: @allergic_reaction_logs
   end
 
@@ -20,12 +20,10 @@ class AllergicReactionLogsController < ProtectedController
   # POST /allergic_reaction_logs
   def create
     @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
-    binding.pry
     @symptom = allergic_reaction_log_params[:symptom]
     @time = allergic_reaction_log_params[:time]
-    # @calories = allergic_reaction_log_params[:calories]
     @allergic_reaction_log = AllergicReactionLog.new(:symptom => @symptom, :time => @time, :date_master_id => @date_master_id)
-    # binding.pry
+
     if @allergic_reaction_log.save
       render json: @allergic_reaction_log, status: :created, location: @allergic_reaction_log
     else
@@ -50,12 +48,12 @@ class AllergicReactionLogsController < ProtectedController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_allergic_reaction_log
-      # binding.pry
+      #
       @allergic_reaction_log = AllergicReactionLog.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def allergic_reaction_log_params
-      params.require(:allergic_reaction_log).permit(:time, :symptom, :date_master_id)
+      params.require(:allergic_reaction_log).permit(:time, :symptom, :date_master_id, :user_id)
     end
 end
