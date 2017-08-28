@@ -1,6 +1,6 @@
 class DateMastersController < ProtectedController
   # binding.pry
-  before_action :set_date_master, only: [:show, :destroy]
+  before_action :set_date_master, only: [:show]
 
   # GET /date_masters
   def index
@@ -25,7 +25,7 @@ class DateMastersController < ProtectedController
 
   # POST /date_masters
   def create
-    binding.pry
+    # binding.pry
     # TODO add conditional to prevent creating date that already exists for that user
     # binding.pry
     @user_id = params[:user_id]
@@ -57,7 +57,9 @@ class DateMastersController < ProtectedController
 
   # DELETE /date_masters/1
   def destroy
-    @date_master.destroy
+    # finds all/any because of .where method
+    @date = DateMaster.find_by(:date => params[:id], :user_id => params[:user_id])
+    @date.destroy
   end
 
   private
@@ -66,6 +68,7 @@ class DateMastersController < ProtectedController
       # binding.pry
       # @user = User.find(params[:id])
       # @date_master = @user.date_masters
+      # binding.pry
       @date_master = DateMaster.find(params[:id])
       # @old_date = date_master_params[:date_old]
     end
