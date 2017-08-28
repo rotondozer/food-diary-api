@@ -1,5 +1,4 @@
 class FoodLogsController < ProtectedController
-  # TODO change < ProtectedController
   before_action :set_food_log, only: [:show, :update, :destroy]
 
   # GET /food_logs
@@ -22,14 +21,14 @@ class FoodLogsController < ProtectedController
   # POST /food_logs
   def create
     @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
-    binding.pry
+    # binding.pry
     @description = food_log_params[:description]
     @time = food_log_params[:time]
     # @calories = food_log_params[:calories]
     @food_log = FoodLog.new(:description => @description,
                             :time => @time,
                             :date_master_id => @date_master_id)
-    binding.pry
+    # binding.pry
     if @food_log.save
       render json: @food_log, status: :created, location: @food_log
     else

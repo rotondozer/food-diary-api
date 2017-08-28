@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :date_masters do
       resources :food_logs
+      resources :allergic_reaction_logs
     end
   end
   resources :date_masters
