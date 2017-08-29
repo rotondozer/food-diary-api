@@ -4,13 +4,9 @@ class DateMastersController < ProtectedController
 
   # GET /date_masters
   def index
-    #
-    # write conditional to get all dates associated with user if *some param* empty
-    # proceed with the code written if not
-    # wait, i don' think i have to do that
-    # if
-    @date_masters = DateMaster.where(:user_id => params[:user_id])
-    #
+
+    @date_masters = DateMaster.where(:user_id => params[:id])
+
     render json: @date_masters
   end
 

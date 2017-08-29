@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   post '/sign-in' => 'users#signin'
   delete '/sign-out/:id' => 'users#signout'
   patch '/change-password/:id' => 'users#changepw'
-  # get '/date_masters/:id' =>
-  # get '/food_logs/:id' =>
-  # get 'allergic_reaction_logs/:id' =>
+  # get '/date_masters/:id' => 'date_masters#index'
+  # get '/food_logs/:id' => 'food_logs#index'
+  # get 'allergic_reaction_logs/:id' => 'allergic_reaction_logs#index'
 
   resources :users, only: [:index, :show] do
     resources :date_masters do
