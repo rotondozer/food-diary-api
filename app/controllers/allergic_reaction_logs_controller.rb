@@ -48,12 +48,11 @@ class AllergicReactionLogsController < ProtectedController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_allergic_reaction_log
-      #
       @allergic_reaction_log = AllergicReactionLog.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def allergic_reaction_log_params
-      params.require(:allergic_reaction_log).permit(:time, :symptom, :date_master_id, :user_id)
+      params.require(:allergic_reaction_log).permit(:time, :symptom, :date_master_id, :date)
     end
 end

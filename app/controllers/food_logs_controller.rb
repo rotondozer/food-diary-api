@@ -11,11 +11,9 @@ class FoodLogsController < ProtectedController
   end
   # GET /food_logs/1
   def show
-    #
     @user = User.find(params[:id])
     @food_log = @user.food_logs
     render json: @food_log
-    #
   end
 
   # POST /food_logs
@@ -54,10 +52,6 @@ class FoodLogsController < ProtectedController
     # Use callbacks to share common setup or constraints between actions.
     def set_food_log
       @food_log = FoodLog.find(params[:id])
-      # @user = User.find(params[:id])
-      # # # #
-      # @food_log = @user.food_logs
-      #
     end
 
     # Only allow a trusted parameter "white list" through.
