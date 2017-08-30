@@ -1,7 +1,7 @@
 FOOD DIARY API
-
-For logging meals and tracking allergic reactions.
+A database for logging food and allergic reactions to determine a correlation.
 
 Fun!
 
-Now with Heroku!
+Link to front-end repo:
+https://github.com/rotondozer/food-diary
