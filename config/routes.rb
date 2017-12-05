@@ -6,24 +6,40 @@ Rails.application.routes.draw do
   patch '/change-password/:id' => 'users#changepw'
   # get '/date_masters/:id' => 'date_masters#index'
   # get '/food_logs/:id' => 'food_logs#index'
-  # get 'allergic_reaction_logs/:id' => 'allergic_reaction_logs#index'
+  # get '/allergic_reaction_logs/:id' => 'allergic_reaction_logs#index'
+  # post '/date_masters/new_date/:user_id' => 'date_masters#create'
 
-  resources :users, only: [:index, :show] do
-    resources :date_masters do
-      resources :food_logs
-    end
+  # creating resources that belong to both 'user' and 'date_master' (are owned by the date)
+  post '/users/:user_id/food_logs/:date' => 'food_logs#create'
+  post '/users/:user_id/allergic_reaction_logs/:date' => 'allergic_reaction_logs#create'
+
+  # 'indexing', but scoped to the user and date
+  get '/users/:user_id/food_logs/:date' => 'food_logs#index'
+  get '/users/:user_id/allergic_reaction_logs/:date' => 'allergic_reaction_logs#index'
+
+  resources :users, only: [:index, :show]
+  resources :users, shallow: true do
+    resources :date_masters
+    resources :food_logs
+    resources :allergic_reaction_logs
   end
 
-  resources :users, only: [:index, :show] do
-    resources :date_masters do
-      resources :allergic_reaction_logs
-    end
-  end
-
-  resources :date_masters
-  resources :food_logs
-  resources :allergic_reaction_logs
-
-  resources :examples, except: [:new, :edit]
+  # resources :users, only: [:index, :show] do
+  #   resources :date_masters do
+  #     resources :food_logs
+  #   end
+  # end
+  #
+  # resources :users, only: [:index, :show] do
+  #   resources :date_masters do
+  #     resources :allergic_reaction_logs
+  #   end
+  # end
+  #
+  # resources :date_masters
+  # resources :food_logs
+  # resources :allergic_reaction_logs
+  #
+  # resources :examples, except: [:new, :edit]
 
 end

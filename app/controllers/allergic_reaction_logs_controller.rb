@@ -2,15 +2,18 @@ class AllergicReactionLogsController < ProtectedController
   before_action :set_allergic_reaction_log, only: [:show, :update, :destroy]
 
   # GET /allergic_reaction_logs
+  # This method is 'indexing' ARLs, but scoped to the user and date
   def index
-    @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
+    @date_master_id = DateMaster.find_by(date: params[:date], user_id: params[:user_id]).id
     #
-    @allergic_reaction_logs = AllergicReactionLog.where(:date_master_id => @date_master_id)
+    @allergic_reaction_logs = AllergicReactionLog.where(date_master_id: @date_master_id)
     #
     render json: @allergic_reaction_logs
   end
 
   # GET /allergic_reaction_logs/1
+  # This method is actually 'indexing' all ARLs
+  # where the :id param represents the user, not a specific ARL
   def show
     @user = User.find(params[:id])
     @allergic_reaction_log = @user.allergic_reaction_logs
@@ -19,7 +22,7 @@ class AllergicReactionLogsController < ProtectedController
 
   # POST /allergic_reaction_logs
   def create
-    @date_master_id = DateMaster.find_by(:date => params[:date_master_id], :user_id => params[:user_id]).id
+    @date_master_id = DateMaster.find_by(date: params[:date], user_id: params[:user_id]).id
     @symptom = allergic_reaction_log_params[:symptom]
     @time = allergic_reaction_log_params[:time]
     @allergic_reaction_log = AllergicReactionLog.new(:symptom => @symptom, :time => @time, :date_master_id => @date_master_id)
