@@ -1,5 +1,7 @@
 class FoodLogsController < ProtectedController
-  before_action :set_food_log, only: [:show, :update, :destroy]
+  # TODO: make this before action work with this controller!!!!
+  # Client has no update or destroy methods so it's unaffected
+  # before_action :set_food_log, only: [:update, :destroy]
 
   # GET /food_logs
   # This method is 'indexing' ARLs, but scoped to the user and date

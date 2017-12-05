@@ -1,6 +1,7 @@
 class DateMastersController < ProtectedController
-  #
-  before_action :set_date_master, only: [:show]
+  # TODO: make this before action work with this controller!!!!
+  # Client has no update or destroy methods so it's unaffected
+  # before_action :set_date_master, only: [:show]
 
   # GET /date_masters
   def index
@@ -13,7 +14,7 @@ class DateMastersController < ProtectedController
   # GET /date_masters/1
   def show
     #
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     @date_master = @user.date_masters
     render json: @date_master
     #
@@ -61,14 +62,14 @@ class DateMastersController < ProtectedController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_date_master
-      #
-      # @user = User.find(params[:id])
-      # @date_master = @user.date_masters
-      #
-      @date_master = DateMaster.find(params[:id])
-      # @old_date = date_master_params[:date_old]
-    end
+    # def set_date_master
+    #   #
+    #   # @user = User.find(params[:id])
+    #   # @date_master = @user.date_masters
+    #   #
+    #   @date_master = DateMaster.find(params[:id])
+    #   # @old_date = date_master_params[:date_old]
+    # end
 
     # Only allow a trusted parameter "white list" through.
     def date_master_params
