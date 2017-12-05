@@ -4,10 +4,6 @@ Rails.application.routes.draw do
   post '/sign-in' => 'users#signin'
   delete '/sign-out/:id' => 'users#signout'
   patch '/change-password/:id' => 'users#changepw'
-  # get '/date_masters/:id' => 'date_masters#index'
-  # get '/food_logs/:id' => 'food_logs#index'
-  # get '/allergic_reaction_logs/:id' => 'allergic_reaction_logs#index'
-  # post '/date_masters/new_date/:user_id' => 'date_masters#create'
 
   # creating resources that belong to both 'user' and 'date_master' (are owned by the date)
   post '/users/:user_id/food_logs/:date' => 'food_logs#create'
@@ -23,23 +19,5 @@ Rails.application.routes.draw do
     resources :food_logs
     resources :allergic_reaction_logs
   end
-
-  # resources :users, only: [:index, :show] do
-  #   resources :date_masters do
-  #     resources :food_logs
-  #   end
-  # end
-  #
-  # resources :users, only: [:index, :show] do
-  #   resources :date_masters do
-  #     resources :allergic_reaction_logs
-  #   end
-  # end
-  #
-  # resources :date_masters
-  # resources :food_logs
-  # resources :allergic_reaction_logs
-  #
-  # resources :examples, except: [:new, :edit]
 
 end
